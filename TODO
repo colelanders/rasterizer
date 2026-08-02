@@ -1,2 +1,3 @@
 - Setup Opengl stuff
 - Handle Software Rasterizer
+  - point → line → triangle outline → filled triangle
