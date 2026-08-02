@@ -4,6 +4,8 @@ TARGET_EXEC := rasterizer
 BUILD_DIR := ./build
 SRC_DIRS := ./src
 
+LDFLAGS := $(shell pkg-config --libs glfw3)
+
 # Find all the C and C++ files we want to compile
 # Note the single quotes around the * expressions. The shell will incorrectly expand these otherwise, but we want to send the * directly to the find command.
 SRCS := $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c' -or -name '*.s')
