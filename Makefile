@@ -45,8 +45,11 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 .PHONY: clean
 clean:
 	rm -r $(BUILD_DIR)
-run:
-	@(test -f ./build/$(TARGET_EXEC) || make) && ./build/$(TARGET_EXEC)
+run: $(BUILD_DIR)/$(TARGET_EXEC)
+	$(BUILD_DIR)/$(TARGET_EXEC)
+update-clang:
+	@bear -- make clean
+	@bear -- make
 
 # Include the .d makefiles. The - at the front suppresses the errors of missing
 # Makefiles. Initially, all the .d files will be missing, and we don't want those

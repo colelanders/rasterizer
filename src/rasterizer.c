@@ -2,22 +2,23 @@
 
 #include "rasterizer.h"
 #include "settings.h"
-struct Pixel raster_buffer[DISPLAY_WIDTH][DISPLAY_HEIGHT];
+
+struct Pixel raster_buffer[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 int buffer_initialized = 0;
 
-void init_buffer() {
-  for (int y = 0; y < DISPLAY_HEIGHT; y++) {
-    for (int x = 0; x < DISPLAY_WIDTH; x++) {
-      raster_buffer[x][y].color = BLACK;
+void try_init_buffer() {
+  if (!buffer_initialized) {
+    for (int y = 0; y < DISPLAY_HEIGHT; y++) {
+      for (int x = 0; x < DISPLAY_WIDTH; x++) {
+        raster_buffer[y][x].color = BLACK;
+      }
     }
+    buffer_initialized = 1;
   }
-  buffer_initialized = 1;
 }
 
 void raster_render() {
-  if (!buffer_initialized) {
-    init_buffer();
-  }
+  try_init_buffer();
   // I need some clarity on what these lines are doing
   glClear(GL_COLOR_BUFFER_BIT);
   glMatrixMode(GL_PROJECTION);
@@ -29,10 +30,14 @@ void raster_render() {
   glBegin(GL_POINTS);
   for (int y = 0; y < DISPLAY_HEIGHT; y++) {
     for (int x = 0; x < DISPLAY_WIDTH; x++) {
-      struct Pixel px = raster_buffer[x][y];
+      struct Pixel px = raster_buffer[y][x];
       glColor3ub(px.color.r, px.color.g, px.color.b);
       glVertex2f(x, y);
     }
   }
   glEnd();
+}
+
+void set_pixel_color(int x, int y, struct Color color) {
+  raster_buffer[y][x].color = color;
 }

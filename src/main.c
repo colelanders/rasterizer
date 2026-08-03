@@ -42,6 +42,7 @@ int main(int argc, char **argv) {
     glfwGetFramebufferSize(window, &width, &height);
     glViewport(0, 0, width, height);
 
+    // rasterizer
     raster_render();
 
     glfwSwapBuffers(window);

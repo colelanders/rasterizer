@@ -24,7 +24,7 @@ static struct Color RED = COLOR(255, 0, 0);
 static struct Color GREEN = COLOR(0, 255, 0);
 static struct Color BLUE = COLOR(0, 0, 255);
 
-extern struct Pixel raster_buffer[DISPLAY_WIDTH][DISPLAY_HEIGHT];
+extern struct Pixel raster_buffer[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 
 void raster_render();
 #endif
