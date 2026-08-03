@@ -26,5 +26,5 @@ static struct Color BLUE = COLOR(0, 0, 255);
 
 extern struct Pixel raster_buffer[DISPLAY_WIDTH][DISPLAY_HEIGHT];
 
-void init_raster_renderer();
+void raster_render();
 #endif
