@@ -46,7 +46,7 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 clean:
 	rm -r $(BUILD_DIR)
 run:
-	$(shell ./build/$(TARGET_EXEC))
+	@(test -f ./build/$(TARGET_EXEC) || make) && ./build/$(TARGET_EXEC)
 
 # Include the .d makefiles. The - at the front suppresses the errors of missing
 # Makefiles. Initially, all the .d files will be missing, and we don't want those
