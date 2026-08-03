@@ -38,6 +38,21 @@ void raster_render() {
   glEnd();
 }
 
-void set_pixel_color(int x, int y, struct Color color) {
+void draw_pixel(int x, int y, struct Color color) {
+  if ((x >= DISPLAY_WIDTH || x < 0) || (y >= DISPLAY_HEIGHT || y < 0)) {
+    return;
+  }
   raster_buffer[y][x].color = color;
+}
+
+// This is an extremely simple line calculation
+// There are better algorithms
+void draw_line(int x1, int y1, int x2, int y2, struct Color color) {
+  int dX = x2 - x1;
+  int dY = y2 - y1;
+  float m = (float)dY / dX;
+  for (int x = x1; x <= x2; x++) {
+    int y = (int)(m * (x - x1) + y1);
+    draw_pixel(x, y, color);
+  }
 }

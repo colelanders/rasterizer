@@ -43,6 +43,7 @@ int main(int argc, char **argv) {
     glViewport(0, 0, width, height);
 
     // rasterizer
+    draw_line(0, 0, DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, RED);
     raster_render();
 
     glfwSwapBuffers(window);
