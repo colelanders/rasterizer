@@ -37,13 +37,18 @@ int main(int argc, char **argv) {
   // Adjust internal settings
   enable_fps_logging(1);
 
+  // Temp
+  int test_vertices[6] = {DISPLAY_WIDTH / 2,      DISPLAY_HEIGHT / 2,
+                          DISPLAY_WIDTH / 2 - 50, DISPLAY_HEIGHT / 2 + 50,
+                          DISPLAY_WIDTH / 2 + 50, DISPLAY_HEIGHT / 2 + 50};
+
   while (!glfwWindowShouldClose(window)) {
     int width, height;
     glfwGetFramebufferSize(window, &width, &height);
     glViewport(0, 0, width, height);
 
     // rasterizer
-    draw_line(0, 0, DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, RED);
+    draw_triangle(test_vertices, BLUE, 1);
     raster_render();
 
     glfwSwapBuffers(window);

@@ -1,7 +1,6 @@
 #ifndef RASTERIZER_H
 #define RASTERIZER_H
 #include <stdint.h>
-#include <wchar.h>
 
 #include "settings.h"
 
@@ -30,4 +29,5 @@ extern struct Pixel raster_buffer[DISPLAY_HEIGHT][DISPLAY_WIDTH];
 void raster_render();
 void draw_pixel(int x, int y, struct Color color);
 void draw_line(int x1, int y1, int x2, int y2, struct Color color);
+void draw_triangle(int *vertices, struct Color color, int fill);
 #endif
